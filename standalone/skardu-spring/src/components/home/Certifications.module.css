@@ -1,0 +1,122 @@
+.certs {
+  padding: 100px 20px;
+  background: #f8fafc;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0072ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: #1e293b;
+}
+
+.title span {
+  background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #4b5563; /* Darker for better visibility */
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex: 1;
+}
+
+.tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #0072ff;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.viewBtn {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: rgba(0, 114, 255, 0.05);
+  color: #0072ff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 114, 255, 0.1);
+}
+
+.viewBtn:hover {
+  background-color: #0072ff;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .certs {
+    padding: 60px 20px;
+  }
+}

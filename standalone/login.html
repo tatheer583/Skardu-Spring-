@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Skardu Spring</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-light);
+    }
+    .login-card {
+      background: white;
+      padding: 4rem;
+      border-radius: 40px;
+      box-shadow: 0 40px 100px rgba(10, 46, 92, 0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+    .login-header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .login-header p {
+      color: #888;
+      margin-bottom: 3rem;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+    .form-group input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 4px rgba(91, 184, 232, 0.1);
+    }
+    .login-btn {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 1.2rem;
+      font-size: 1rem;
+    }
+    #error-message {
+      color: #e74c3c;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Portal <span>Access</span></h1>
+        <p>Authorized Personnel Only</p>
+      </div>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        
+        <div id="error-message"></div>
+        
+        <button type="submit" class="btn-primary login-btn">Sign In</button>
+      </form>
+      
+      <a href="index.html" style="display: block; margin-top: 2rem; color: #aaa; text-decoration: none; font-size: 0.9rem;">Back to Website</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.getElementById('error-message');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('adminToken', data.token);
+          localStorage.setItem('adminUser', data.username);
+          window.location.href = 'admin.html';
+        } else {
+          errorMsg.textContent = data.error || 'Login failed';
+          errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Server is not responding';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

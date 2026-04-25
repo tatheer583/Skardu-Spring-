@@ -1,0 +1,151 @@
+.aboutWrapper {
+  background: white;
+}
+
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroImg {
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(10, 46, 92, 0.4), rgba(10, 46, 92, 0.8));
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-crystal-cyan);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  color: white;
+  margin-bottom: 30px;
+}
+
+.title span {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.desc {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+}
+
+/* -- Narrative -- */
+.narrative {
+  padding: 120px 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2.8rem;
+  color: var(--color-deep-blue);
+  margin-bottom: 30px;
+}
+
+.sectionTitle span {
+  color: var(--color-crystal-cyan);
+}
+
+.textSide p {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.9;
+  margin-bottom: 25px;
+}
+
+.imageBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.bottleImg {
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+}
+
+/* -- Values -- */
+.values {
+  padding: 100px 0;
+  background: #f8fafc;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.valueCard {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.valueCard svg {
+  font-size: 2.5rem;
+  color: var(--color-crystal-cyan);
+  margin-bottom: 25px;
+}
+
+.valueCard h3 {
+  font-size: 1.3rem;
+  color: var(--color-deep-blue);
+  margin-bottom: 15px;
+}
+
+.valueCard p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}

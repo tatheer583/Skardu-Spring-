@@ -1,0 +1,148 @@
+/* Admin Dashboard Styles */
+
+.admin-section {
+    padding: 8rem 0 5rem;
+    background-color: var(--bg-light);
+    min-height: calc(100vh - 100px);
+}
+
+.admin-header {
+    margin-bottom: 3rem;
+}
+
+/* Stats Cards */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.stat-card p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    font-family: 'Playfair Display', serif;
+    margin: 0.5rem 0;
+}
+
+.stat-subtitle {
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 500;
+}
+
+.stat-card.revenue {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    border: 1px solid rgba(91, 184, 232, 0.2);
+}
+
+.stat-card.revenue p {
+    color: #2ecc71; /* Success Green for money */
+}
+
+.stat-card.active {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbf0 100%);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.stat-card.active p {
+    color: #f39c12; /* Warning Orange for active tasks */
+}
+
+/* Table Styles */
+.table-wrapper {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.orders-table th {
+    padding: 1rem;
+    border-bottom: 2px solid var(--bg-light);
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.orders-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.orders-table tr:hover {
+    background-color: #f8fbff;
+}
+
+.status-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-select {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+}
+
+.status-pending { background-color: #fff4e5; color: #b7791f; }
+.status-processing { background-color: #ebf8ff; color: #2b6cb0; }
+.status-delivered { background-color: #e6fffa; color: #2c7a7b; }
+.status-cancelled { background-color: #fff5f5; color: #c53030; }
+
+.btn-action {
+    padding: 0.4rem 1rem;
+    background: var(--bg-light);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-action:hover {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+}
