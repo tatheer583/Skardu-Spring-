@@ -1,76 +1,81 @@
-# Skardu Spring
+# 🌊 Skardu Spring Ecosystem
 
-A premium e-commerce platform for Skardu Spring, featuring a modern frontend, a robust backend, and a standalone version.
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/tatheer583/skardu-spring)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20-green)](https://nodejs.org/)
 
-## Project Structure
+**Skardu Spring** is a premium, full-stack e-commerce platform dedicated to delivering the absolute purity of Karakoram glacial water. Built with modern technologies and a luxury-first design philosophy, it offers a seamless experience from source to doorstep.
 
-- `skardu-spring/`: Main frontend application built with Next.js.
-- `backend/`: Node.js backend server with Express and MongoDB.
-- `standalone/`: A static, lightweight version of the website.
-- `start-all.ps1`: PowerShell script to start both frontend and backend services.
+---
 
-## Getting Started
+## 🏗️ Architecture Overview
 
-### Prerequisites
+The project is organized as a monorepo containing:
 
-- Node.js (v18 or later)
-- MongoDB (running locally or a cloud instance)
+- **`/frontend`**: A high-performance Next.js application featuring glassmorphism design, smooth animations (Framer Motion), and responsive layouts.
+- **`/backend`**: A robust Node.js/Express REST API with modular architecture, JWT authentication, and MongoDB integration.
+- **`/legacy`**: (Internal) Legacy static prototypes used for rapid iteration.
 
-### Installation
+```mermaid
+graph TD
+    User((User)) -->|HTTPS| Frontend[Next.js App]
+    Frontend -->|API Requests| Backend[Node.js Express API]
+    Backend -->|Data| MongoDB[(MongoDB)]
+    Backend -->|Emails| SMTP[Nodemailer]
+    Backend -->|AI Chat| OpenAI[OpenAI API]
+```
 
-1. Clone the repository:
-   ```bash
-   git clone <your-repo-url>
-   cd skardu-spring
-   ```
+---
 
-2. Install dependencies for both frontend and backend:
-   ```bash
-   # Install root dependencies (if any)
-   npm install
+## 🚀 Getting Started
 
-   # Install frontend dependencies
-   cd skardu-spring
-   npm install
+### 1. Prerequisites
+- **Node.js** (v20 or higher)
+- **MongoDB** (Running locally or MongoDB Atlas)
+- **OpenAI API Key** (For the chatbot feature)
 
-   # Install backend dependencies
-   cd ../backend
-   npm install
-   ```
+### 2. Installation
+Clone the repository and install dependencies in one command:
+```bash
+npm run install:all
+```
 
-3. Set up environment variables:
-   - Create `.env` files in both `skardu-spring/` and `backend/` based on `.env.example` (if provided) or your specific configuration.
+### 3. Environment Setup
+Copy the `.env.example` files in both `/frontend` and `/backend` to `.env` and fill in your credentials.
 
-### Running the Project
-
-You can use the provided script to start everything:
-
+### 4. Launch Ecosystem
+Use our professional startup script to boot both services:
 ```powershell
 ./start-all.ps1
 ```
 
-Or start them individually:
+---
 
-**Frontend:**
-```bash
-cd skardu-spring
-npm run dev
-```
+## ✨ Key Features
 
-**Backend:**
-```bash
-cd backend
-npm start
-```
+- **Luxury UI/UX**: Custom-tailored design system reflecting purity and glacial aesthetics.
+- **AI Concierge**: Integrated GPT-powered assistant for expert product knowledge.
+- **Secure Checkout**: Streamlined ordering process with automated email confirmations.
+- **Admin Dashboard**: Real-time order management and customer inquiry tracking.
+- **Professional Backend**: Modular routing, centralized error handling, and secure authentication.
 
-## Features
+---
 
-- Modern, responsive design.
-- Full e-commerce functionality (cart, checkout).
-- Admin dashboard for product management.
-- Integrated AI assistant features.
-- Multi-component architecture.
+## 🛠️ Tech Stack
 
-## License
+- **Frontend**: Next.js, React, Framer Motion, Swiper.js, CSS Modules.
+- **Backend**: Node.js, Express, Mongoose, JSON Web Tokens (JWT).
+- **Services**: OpenAI API, Nodemailer (SMTP), MongoDB.
 
-MIT
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">
+  Developed with ❤️ for Skardu Spring
+</p>

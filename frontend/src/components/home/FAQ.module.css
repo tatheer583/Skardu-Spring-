@@ -1,0 +1,153 @@
+.faq {
+  padding: 100px 20px;
+  background: var(--bg-primary);
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.label {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(0, 119, 255, 0.1);
+  color: var(--accent-blue);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 2.8rem;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.title span {
+  color: var(--accent-blue);
+}
+
+/* Accordion Styles */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.itemActive {
+  border-color: var(--accent-blue);
+  background: rgba(0, 119, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.question h3 {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin: 0;
+  padding-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.itemActive .question h3 {
+  color: var(--accent-blue);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.icon::before,
+.icon::after {
+  content: '';
+  position: absolute;
+  background: var(--text-secondary);
+  transition: background 0.3s ease;
+}
+
+.icon::before {
+  width: 12px;
+  height: 2px;
+  top: 11px;
+  left: 6px;
+}
+
+.icon::after {
+  width: 2px;
+  height: 12px;
+  top: 6px;
+  left: 11px;
+}
+
+.itemActive .icon {
+  transform: rotate(45deg);
+}
+
+.itemActive .icon::before,
+.itemActive .icon::after {
+  background: var(--accent-blue);
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.itemActive .answer {
+  max-height: 200px;
+}
+
+.answerInner {
+  padding: 0 24px 24px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .faq {
+    padding: 60px 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .question h3 {
+    font-size: 1rem;
+  }
+}
