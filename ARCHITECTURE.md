@@ -1,49 +1,119 @@
-# Technical Architecture
+# 🏗️ Technical Architecture: Skardu Spring
 
-This document provides a deeper look into the design and technical decisions of the Skardu Spring ecosystem.
+This document provides a comprehensive deep-dive into the design, technical decisions, and structural integrity of the Skardu Spring ecosystem. It is intended for developers, stakeholders, and contributors.
 
-## 📁 Directory Structure
+---
 
-```text
-root/
-├── frontend/           # Next.js Application
-│   ├── src/
-│   │   ├── app/        # App Router (Pages & API)
-│   │   ├── components/ # Reusable UI Components
-│   │   └── data/       # Static product/content data
-├── backend/            # Node.js Express API
-│   ├── routes/         # Modular API endpoints
-│   ├── models/         # Mongoose Data Models
-│   ├── middleware/     # Auth & Error handling
-│   └── services/       # Email & Third-party integrations
-└── legacy/             # Deprecated prototypes
+## 📐 System Overview
+
+Skardu Spring is built as a high-performance, scalable monorepo. It leverages a modern full-stack architecture to deliver a premium e-commerce experience with AI-integrated customer support.
+
+```mermaid
+graph TB
+    subgraph Client_Layer [Client Layer]
+        FE[Next.js Frontend]
+        ST[State Management]
+    end
+
+    subgraph API_Gateway [API & Orchestration]
+        BE[Node.js Express API]
+        AUTH[JWT Security]
+    end
+
+    subgraph Service_Integration [Services & AI]
+        AI[OpenAI Concierge]
+        MAIL[Nodemailer SMTP]
+    end
+
+    subgraph Persistence_Layer [Persistence]
+        DB[(MongoDB Atlas)]
+        FS[Local File Storage]
+    end
+
+    FE -->|GraphQL/REST| BE
+    BE --> AUTH
+    BE --> AI
+    BE --> MAIL
+    BE --> DB
+    BE --> FS
 ```
 
-## 🔐 Security
+---
 
-- **Authentication**: JWT-based stateless authentication for admin routes.
-- **Environment Management**: Strict separation of credentials using `.env` files.
-- **CORS**: Configurable origin protection to restrict API access.
+## 📁 Directory Structure & Logic
 
-## 📡 Backend API Design
+The project follows a modular, domain-driven structure to ensure separation of concerns and maintainability.
 
-The backend is built following a **modular route pattern**. Each major feature (Orders, Auth, Chat) has its own router file, making the codebase scalable and easy to maintain.
+### 1. `/frontend` (Next.js 15+)
+- **App Router**: Leverages server components for SEO and client components for interactivity.
+- **Design System**: A centralized `globals.css` with HSL-tailored tokens and glassmorphism utilities.
+- **Component Architecture**: Atomic design principles (Atoms -> Molecules -> Organisms).
 
-### Error Handling
-A centralized error middleware ensures all API responses follow a consistent format:
-```json
-{
-  "error": "Message here",
-  "stack": "🥞"
-}
+### 2. `/backend` (Express.js)
+- **Modular Routes**: Logic is split by domain (e.g., `/orders`, `/admin`, `/assistant`).
+- **Middleware-First**: Centralized error handling and JWT verification.
+- **Service Layer**: Business logic is abstracted into services (Email, AI, Database) to keep routes clean.
+
+---
+
+## 🔄 Data & Request Flow
+
+Understanding how data moves through the system is critical for debugging and scaling.
+
+### Order Processing Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant API
+    participant DB
+    participant Mailer
+
+    User->>Frontend: Submit Checkout
+    Frontend->>API: POST /api/orders (JWT/Guest)
+    API->>API: Validate Data & Sanitize
+    API->>DB: Persist Order Data
+    DB-->>API: Success
+    API->>Mailer: Send Order Confirmation
+    API-->>Frontend: 201 Created + OrderID
+    Frontend->>User: Redirect to Success Page
 ```
 
-## 🎨 Frontend Design System
+---
 
-- **Glassmorphism**: Using backdrop filters and subtle borders to create a "cool, glacial" effect.
-- **Responsive**: Fully optimized for mobile, tablet, and desktop using CSS Grid and Flexbox.
-- **Animations**: Subtle, performance-optimized entry animations using Framer Motion to enhance the "luxury" feel without sacrificing speed.
+## 🔐 Security Framework
 
-## 🤖 AI Integration
+Security is baked into the architecture, not added as an afterthought.
 
-The system uses the **OpenAI GPT-3.5 API** with a strictly defined system prompt to act as a "Luxury Concierge." It is designed to be helpful while maintaining brand boundaries.
+- **Authentication**: JWT-based stateless authentication for all administrative operations.
+- **Sanitization**: Request bodies are sanitized to prevent XSS and NoSQL injection.
+- **Environment Management**: Secrets are managed via `.env` files, with strict `.gitignore` rules to prevent credential leakage.
+- **CORS Strategy**: Explicitly defined origin policies to prevent unauthorized cross-site requests.
+
+---
+
+## 🎨 Design Philosophy: "Digital Purity"
+
+The UI/UX is built on the concept of **"Glacial Aesthetics"**:
+- **Transparency**: Extensive use of glassmorphism to mimic ice and water.
+- **Fluidity**: Framer Motion orchestrates all transitions to feel organic and liquid.
+- **Typography**: A balanced mix of *Playfair Display* (Elegance) and *Inter* (Clarity).
+
+---
+
+## 🛠️ Tech Stack Specification
+
+| Layer | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js 15 | SSR for SEO, dynamic routing, and performance. |
+| **Styling** | Vanilla CSS + Modules | Maximum flexibility and design precision. |
+| **Animations** | Framer Motion | Industry standard for production-grade motion. |
+| **Backend** | Node.js / Express | Fast, non-blocking I/O for concurrent requests. |
+| **Database** | MongoDB | Flexible schema for evolving product data. |
+| **AI Integration** | OpenAI SDK | GPT-4o for the AI Concierge experience. |
+
+---
+
+<p align="center">
+  <i>Documentation version 1.1.0 — Last Updated: April 2026</i>
+</p>

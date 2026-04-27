@@ -1,88 +1,156 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { IoWaterOutline } from 'react-icons/io5';
 import { HiArrowRight } from 'react-icons/hi';
 import styles from './Hero.module.css';
 
 export default function Hero() {
-  const heroRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!heroRef.current) return;
-      const scrollY = window.scrollY;
-      const bgImg = heroRef.current.querySelector(`.${styles.heroBg} img`);
-      if (bgImg) {
-        bgImg.style.transform = `scale(1.1) translateY(${scrollY * 0.3}px)`;
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
+  // Animation Variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: { 
+        delay: custom * 0.2, 
+        duration: 0.8, 
+        ease: [0.33, 1, 0.68, 1] 
       }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    })
+  };
 
   return (
-    <section className={styles.hero} id="hero-section" ref={heroRef}>
-      {/* Background Image */}
-      <div className={styles.heroBg}>
+    <section className={`${styles.hero} premium-noise`} id="hero-section" ref={containerRef}>
+      {/* Background Image with Parallax */}
+      <motion.div 
+        className={styles.heroBg}
+        style={{ y, scale }}
+      >
         <Image
           src="/images/climber-peak.png"
           alt="Mountain climber at peak with Skardu Spring"
           fill
           priority
-          quality={85}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          quality={90}
+          sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-      </div>
+      </motion.div>
 
       {/* Gradient Overlay */}
       <div className={styles.heroOverlay}></div>
 
       {/* Floating Water Particles */}
       <div className={styles.particles}>
-        {[...Array(8)].map((_, i) => (
-          <div key={`particle-${i}`} className={styles.particle}></div>
+        {[...Array(12)].map((_, i) => (
+          <motion.div 
+            key={`particle-${i}`} 
+            className={styles.particle}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 0.5, 0],
+              scale: [0.5, 1, 0.5]
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "easeInOut"
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          ></motion.div>
         ))}
       </div>
 
       {/* Content */}
-      <div className={styles.heroContent}>
-        <div className={styles.heroLabel}>
+      <motion.div 
+        className={styles.heroContent}
+        style={{ opacity }}
+      >
+        <motion.div 
+          className={styles.heroLabel}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+        >
           <IoWaterOutline />
           <span>Premium Natural Mineral Water</span>
-        </div>
+        </motion.div>
 
-        <h1 className={styles.heroTitle}>
+        <motion.h1 
+          className={styles.heroTitle}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={1}
+        >
           Experience <span className={styles.heroTitleAccent}>Absolute</span> <br />
           Purity.
-        </h1>
+        </motion.h1>
 
-        <p className={styles.heroDesc}>
+        <motion.p 
+          className={styles.heroDesc}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={2}
+        >
           Born from the crystalline heart of the Karakoram glaciers. 
           A 10,000-year journey of natural filtration, delivered 
           directly to your urban doorstep.
-        </p>
+        </motion.p>
 
-        <div className={styles.heroCtas}>
-          <Link href="/shop" className={styles.ctaPrimary} id="hero-cta-shop">
+        <motion.div 
+          className={styles.heroCtas}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+        >
+          <Link href="/shop" className={`${styles.ctaPrimary} glass-card`} id="hero-cta-shop">
             <span>Shop Collection</span>
             <HiArrowRight />
           </Link>
           <Link href="/source" className={styles.ctaSecondary} id="hero-cta-source">
             <span>Discover Our Source</span>
           </Link>
-        </div>
+        </motion.div>
 
-        <div className={styles.scrollIndicator}>
+        <motion.div 
+          className={styles.scrollIndicator}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        >
           <span className={styles.scrollText}>Scroll to explore</span>
           <div className={styles.scrollMouse}>
-            <div className={styles.scrollDot}></div>
+            <motion.div 
+              className={styles.scrollDot}
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            ></motion.div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

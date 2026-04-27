@@ -78,10 +78,12 @@
   --shadow-card: 0 8px 32px rgba(10, 46, 92, 0.1);
 
   /* -- Glass Effect -- */
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-bg-light: rgba(255, 255, 255, 0.7);
-  --glass-border-light: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg-light: rgba(255, 255, 255, 0.65);
+  --glass-border-light: rgba(255, 255, 255, 0.35);
+  --glass-blur: blur(12px);
+  --glass-shadow: 0 8px 32px 0 rgba(10, 46, 92, 0.15);
 
   /* -- Transitions -- */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,6 +239,42 @@ ul, ol {
 
 .text-center .section-subtitle {
   margin: 0 auto;
+}
+
+/* ===================================================
+   PREMIUM UTILITIES
+   =================================================== */
+.premium-noise {
+  position: relative;
+}
+
+.premium-noise::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3FfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 100;
+}
+
+.glass-card {
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-base);
+}
+
+.glass-card:hover {
+  border-color: var(--color-crystal-cyan);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-5px);
 }
 
 /* ===================================================
