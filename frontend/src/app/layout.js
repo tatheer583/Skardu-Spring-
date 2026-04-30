@@ -19,6 +19,7 @@ export const metadata = {
 };
 
 import { CartProvider } from '@/context/CartContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 import CartDrawer from '@/components/shop/CartDrawer';
 import ToastContainer from '@/components/shop/Toast';
 
@@ -49,23 +50,25 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body suppressHydrationWarning>
-        <CartProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <Assistant />
-          <CartDrawer />
-          <ToastContainer />
-          <a 
-            href="https://wa.me/923492899537" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="whatsapp-float"
-            aria-label="Contact us on WhatsApp"
-          >
-            <FaWhatsapp />
-          </a>
-        </CartProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <Assistant />
+            <CartDrawer />
+            <ToastContainer />
+            <a 
+              href="https://wa.me/923492899537" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="whatsapp-float"
+              aria-label="Contact us on WhatsApp"
+            >
+              <FaWhatsapp />
+            </a>
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

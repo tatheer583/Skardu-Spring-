@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { IoWaterOutline, IoCartOutline } from 'react-icons/io5';
 import { useCart } from '@/context/CartContext';
+import ThemeToggle from './ThemeToggle';
 import styles from './Navbar.module.css';
 
 const navItems = [
@@ -60,6 +61,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
+          <ThemeToggle />
           <button 
             className={styles.cartBtn} 
             onClick={() => setIsCartOpen(true)}

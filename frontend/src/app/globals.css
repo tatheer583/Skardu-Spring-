@@ -9,7 +9,7 @@
    CSS CUSTOM PROPERTIES (Design Tokens)
    =================================================== */
 :root {
-  /* -- Brand Colors -- */
+  /* -- Brand Colors (Static) -- */
   --color-deep-blue: #0A2E5C;
   --color-navy: #0D3B72;
   --color-royal-blue: #1A5CA8;
@@ -22,8 +22,13 @@
   --color-mountain-stone: #2D3436;
   --color-dark-slate: #1A1D21;
   --color-glacier-teal: #2EC4B6;
-  --text-primary: #0A2E5C;
-  --text-secondary: #4B5A6D;
+
+  /* -- Semantic Theme Variables (Dynamic) -- */
+  --bg-page: var(--color-ice-white);
+  --bg-card: var(--color-pure-white);
+  --text-main: var(--color-mountain-stone);
+  --text-heading: var(--color-deep-blue);
+  --text-muted: #4B5A6D;
 
   /* -- Gradients -- */
   --gradient-hero: linear-gradient(135deg, rgba(10, 46, 92, 0.85) 0%, rgba(91, 184, 232, 0.6) 50%, rgba(168, 230, 207, 0.4) 100%);
@@ -97,6 +102,32 @@
 }
 
 /* ===================================================
+   DARK THEME OVERRIDES
+   =================================================== */
+[data-theme='dark'] {
+  --bg-page: #0a0c12;
+  --bg-card: #12161f;
+  --text-main: #f0f5fa;
+  --text-heading: #8dd4f0;
+  --text-muted: #a8b2bd;
+
+  --glass-bg: rgba(0, 0, 0, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg-light: rgba(18, 22, 31, 0.85);
+  --glass-border-light: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+
+  --gradient-hero: linear-gradient(135deg, #050a14 0%, #0a2e5c 50%, #050a14 100%);
+  --gradient-frost: linear-gradient(180deg, rgba(10, 12, 18, 0) 0%, rgba(10, 12, 18, 1) 100%);
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ===================================================
    GLOBAL RESET & BASE STYLES
    =================================================== */
 *,
@@ -118,16 +149,17 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
-  color: var(--color-mountain-stone);
-  background-color: var(--color-ice-white);
+  color: var(--text-main);
+  background-color: var(--bg-page);
   overflow-x: hidden;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-deep-blue);
+  color: var(--text-heading);
 }
 
 h1 { font-size: var(--text-6xl); }
@@ -138,7 +170,7 @@ h4 { font-size: var(--text-xl); }
 p {
   font-size: var(--text-base);
   line-height: 1.8;
-  color: var(--color-mountain-stone);
+  color: var(--text-main);
 }
 
 a {
@@ -181,7 +213,7 @@ ul, ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-ice-white);
+  background: var(--bg-page);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -221,14 +253,14 @@ ul, ol {
 
 .section-title {
   font-size: var(--text-5xl);
-  color: var(--color-deep-blue);
+  color: var(--text-heading);
   margin-bottom: var(--space-lg);
   line-height: 1.15;
 }
 
 .section-subtitle {
   font-size: var(--text-lg);
-  color: var(--color-mountain-stone);
+  color: var(--text-main);
   max-width: 600px;
   line-height: 1.8;
 }
@@ -455,8 +487,3 @@ ul, ol {
     font-size: 24px;
   }
 }
-
-/* ===================================================
-   SCOPED IMAGE HOVER (Products & Cards only)
-   =================================================== */
-/* Only apply interactive hover effects to images inside product/card contexts */

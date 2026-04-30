@@ -26,6 +26,12 @@
   box-shadow: var(--shadow-sm);
 }
 
+:global([data-theme='dark']) .navScrolled {
+  background: rgba(10, 12, 18, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
 .navInner {
   width: 100%;
   max-width: var(--max-width);
@@ -154,6 +160,67 @@
 .cartBtn:hover {
   color: var(--color-crystal-cyan);
   transform: scale(1.1);
+}
+
+.themeToggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.themeToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.navScrolled .themeToggle {
+  background: rgba(10, 46, 92, 0.05);
+  border-color: rgba(10, 46, 92, 0.1);
+}
+
+:global([data-theme='dark']) .navScrolled .themeToggle {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggleIconWrapper {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.toggleIcon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moonIcon {
+  color: var(--color-pure-white);
+}
+
+.sunIcon {
+  color: #f1c40f;
+}
+
+.navScrolled .moonIcon {
+  color: var(--color-deep-blue);
+}
+
+:global([data-theme='dark']) .navScrolled .moonIcon,
+:global([data-theme='dark']) .moonIcon {
+  color: var(--color-light-cyan);
 }
 
 .navScrolled .cartBtn {
