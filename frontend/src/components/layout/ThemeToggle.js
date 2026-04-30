@@ -1,12 +1,20 @@
 'use client';
 
 import { useTheme } from '@/context/ThemeContext';
-import { IoMoon, IoSun } from 'react-icons/io5';
+import { IoMoon, IoSunny } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
+
+  if (!mounted) {
+    return (
+      <button className={styles.themeToggle} aria-label="Toggle theme">
+        <div className={styles.toggleIconWrapper}></div>
+      </button>
+    );
+  }
 
   return (
     <button
@@ -27,7 +35,7 @@ export default function ThemeToggle() {
             {theme === 'light' ? (
               <IoMoon className={styles.moonIcon} />
             ) : (
-              <IoSun className={styles.sunIcon} />
+              <IoSunny className={styles.sunIcon} />
             )}
           </motion.div>
         </AnimatePresence>

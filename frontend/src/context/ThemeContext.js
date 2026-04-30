@@ -25,12 +25,8 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.setAttribute('data-theme', newTheme);
   };
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mounted }}>
       {children}
     </ThemeContext.Provider>
   );
