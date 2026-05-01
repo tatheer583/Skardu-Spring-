@@ -27,7 +27,7 @@ export default function Assistant() {
   };
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
   }, []);
 
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function Assistant() {
     const messageText = text || inputValue;
     if (!messageText.trim()) return;
 
-    // Add user message
-    const userMessage = { id: `msg-${Date.now()}`, role: 'user', content: messageText };
+    // Add user message with a unique ID generated at call time
+    const userMessage = { id: `msg-${Math.random().toString(36).substr(2, 9)}`, role: 'user', content: messageText };
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
@@ -57,14 +57,14 @@ export default function Assistant() {
       const data = await response.json();
       
       if (data.response) {
-        setMessages(prev => [...prev, { id: `bot-${Date.now()}`, role: 'bot', content: data.response }]);
+        setMessages(prev => [...prev, { id: `bot-${Math.random().toString(36).substr(2, 9)}`, role: 'bot', content: data.response }]);
       } else if (data.error) {
-        setMessages(prev => [...prev, { id: `err-${Date.now()}`, role: 'bot', content: data.error }]);
+        setMessages(prev => [...prev, { id: `err-${Math.random().toString(36).substr(2, 9)}`, role: 'bot', content: data.error }]);
       } else {
-        setMessages(prev => [...prev, { id: `fallback-${Date.now()}`, role: 'bot', content: 'I am currently having a little trouble connecting, but you can explore all our products directly on our Shop page!' }]);
+        setMessages(prev => [...prev, { id: `fallback-${Math.random().toString(36).substr(2, 9)}`, role: 'bot', content: 'I am currently having a little trouble connecting, but you can explore all our products directly on our Shop page!' }]);
       }
     } catch (error) {
-      setMessages(prev => [...prev, { id: `catch-${Date.now()}`, role: 'bot', content: 'I am currently having a little trouble connecting, but you can explore all our products directly on our Shop page!' }]);
+      setMessages(prev => [...prev, { id: `catch-${Math.random().toString(36).substr(2, 9)}`, role: 'bot', content: 'I am currently having a little trouble connecting, but you can explore all our products directly on our Shop page!' }]);
     } finally {
       setIsTyping(false);
     }

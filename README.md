@@ -9,7 +9,7 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftatheer583%2FSkardu-Spring-&root-directory=frontend&env=OPENAI_API_KEY,EMAIL_USER,EMAIL_PASS,ADMIN_EMAIL&project-name=skardu-spring&repository-name=skardu-spring-frontend)
 
-**Skardu Spring** is a world-class, full-stack e-commerce ecosystem dedicated to delivering the crystalline purity of glacial water. This project embodies a "Digital Purity" design philosophy, blending state-of-the-art technology with a luxury aesthetic.
+**Skardu Spring** is a premium, full-stack e-commerce ecosystem delivering the crystalline purity of the Karakoram. Built with Next.js 15, Express, and OpenAI, featuring a high-performance 'Digital Purity' design philosophy.
 
 ---
 

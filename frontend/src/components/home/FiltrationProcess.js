@@ -32,7 +32,7 @@ export default function FiltrationProcess() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
   }, []);
 
   return (

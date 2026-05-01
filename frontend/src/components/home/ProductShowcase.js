@@ -14,7 +14,7 @@ export default function ProductShowcase() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
   }, []);
 
   // Show first 6 products for homepage showcase (balanced 3-column grid)

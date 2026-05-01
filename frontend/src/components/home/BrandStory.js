@@ -36,7 +36,7 @@ export default function BrandStory() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
   }, []);
 
   return (

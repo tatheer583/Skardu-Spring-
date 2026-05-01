@@ -1,7 +1,7 @@
 {
   "name": "skardu-spring-ecosystem",
   "version": "1.0.0",
-  "description": "Professional E-commerce Ecosystem for Skardu Spring",
+  "description": "Skardu Spring: A premium, full-stack e-commerce ecosystem delivering the crystalline purity of the Karakoram. Built with Next.js 15, Express, and OpenAI, featuring a high-performance 'Digital Purity' design philosophy.",
   "private": true,
   "scripts": {
     "start": "powershell ./start-all.ps1",

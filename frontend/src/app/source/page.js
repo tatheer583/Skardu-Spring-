@@ -63,7 +63,7 @@ export default function SourcePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Discover the 10,000-year journey of nature's most perfect water, 
+            Discover the 10,000-year journey of nature&apos;s most perfect water, 
             sourced from the pristine peaks of the Karakoram.
           </motion.p>
         </div>
@@ -76,12 +76,12 @@ export default function SourcePage() {
             <div className={styles.textContent}>
               <h2 className={styles.sectionTitle}>A Sanctuary of <span>Purity</span></h2>
               <p>
-                In the remote highlands of Gilgit-Baltistan, Skardu stands as a testament to Earth's 
+                In the remote highlands of Gilgit-Baltistan, Skardu stands as a testament to Earth&apos;s 
                 untouched beauty. Here, glaciers that have existed for tens of thousands of years 
                 slowly release their crystalline essence.
               </p>
               <p>
-                This isn't just water. It's a biological legacy. As the glacial melt-water seeps 
+                This isn&apos;t just water. It&apos;s a biological legacy. As the glacial melt-water seeps 
                 into the earth, it begins a slow, deliberate descent through deep volcanic rock 
                 and ancient glacial moraines. This natural process takes centuries, during which 
                 the water is purified of all contaminants while being enriched with a unique 

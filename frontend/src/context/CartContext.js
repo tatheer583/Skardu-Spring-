@@ -14,11 +14,13 @@ export function CartProvider({ children }) {
 
   // Load cart from localStorage
   useEffect(() => {
-    const savedCart = localStorage.getItem('skardu_cart');
-    const savedWishlist = localStorage.getItem('skardu_wishlist');
-    if (savedCart) setCart(JSON.parse(savedCart));
-    if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
-    setIsInitialized(true);
+    Promise.resolve().then(() => {
+      const savedCart = localStorage.getItem('skardu_cart');
+      const savedWishlist = localStorage.getItem('skardu_wishlist');
+      if (savedCart) setCart(JSON.parse(savedCart));
+      if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
+      setIsInitialized(true);
+    });
   }, []);
 
   // Save cart to localStorage

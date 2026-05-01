@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -10,6 +10,21 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+
+  // Generate particle data in useEffect to avoid purity issues during render
+  useEffect(() => {
+    const data = [...Array(12)].map((_, i) => ({
+      id: i,
+      duration: Math.random() * 5 + 5,
+      delay: Math.random() * 5,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    }));
+    
+    // Set state asynchronously to avoid cascading render warning
+    Promise.resolve().then(() => setParticles(data));
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -57,9 +72,9 @@ export default function Hero() {
 
       {/* Floating Water Particles */}
       <div className={styles.particles}>
-        {[...Array(12)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div 
-            key={`particle-${i}`} 
+            key={`particle-${particle.id}`} 
             className={styles.particle}
             animate={{
               y: [0, -100, 0],
@@ -67,14 +82,14 @@ export default function Hero() {
               scale: [0.5, 1, 0.5]
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: particle.delay,
               ease: "easeInOut"
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: particle.left,
+              top: particle.top,
             }}
           ></motion.div>
         ))}

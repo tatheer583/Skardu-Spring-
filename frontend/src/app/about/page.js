@@ -60,7 +60,7 @@ export default function AboutPage() {
               </p>
               <p>
                 We founded Skardu Spring with a simple mission: to share this geological masterpiece 
-                with the world while preserving the sanctity of its source. We don't just bottle water; 
+                with the world while preserving the sanctity of its source. We don&apos;t just bottle water; 
                 we bottle heritage.
               </p>
             </div>

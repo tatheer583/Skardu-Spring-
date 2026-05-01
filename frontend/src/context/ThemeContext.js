@@ -13,9 +13,12 @@ export const ThemeProvider = ({ children }) => {
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
     
-    setTheme(initialTheme);
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    setMounted(true);
+    // Wrap in Promise to avoid synchronous state update in effect (cascading render warning)
+    Promise.resolve().then(() => {
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-theme', initialTheme);
+      setMounted(true);
+    });
   }, []);
 
   const toggleTheme = () => {

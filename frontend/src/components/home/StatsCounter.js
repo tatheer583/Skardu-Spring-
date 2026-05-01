@@ -40,7 +40,7 @@ function StatItem({ icon, target, suffix, label }) {
   const count = useCountUp(target, inView);
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -69,7 +69,7 @@ export default function StatsCounter() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    Promise.resolve().then(() => setIsMounted(true));
   }, []);
 
   return (

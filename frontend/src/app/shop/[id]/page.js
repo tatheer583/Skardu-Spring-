@@ -25,19 +25,18 @@ export default function ProductPage() {
   const params = useParams();
   const router = useRouter();
   const { addToCart, toggleWishlist, wishlist } = useCart();
-  const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
 
+  // Memoize the product lookup to avoid using state and useEffect for initialization
+  const product = useMemo(() => PRODUCTS.find(p => p.id === params.id), [params.id]);
+
   useEffect(() => {
-    const found = PRODUCTS.find(p => p.id === params.id);
-    if (found) {
-      setProduct(found);
-    } else {
+    if (!product) {
       router.push('/shop');
     }
-  }, [params.id, router]);
+  }, [product, router]);
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) addToCart(product);
