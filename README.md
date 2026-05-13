@@ -40,7 +40,6 @@ graph TD
     Backend -->|Intelligence| AI[OpenAI GPT-4o]
 ```
 
----
 
 ## 🚀 Quick Start
 
@@ -57,7 +56,7 @@ Create a `.env` in both `/frontend` and `/backend` based on provided `.env.examp
 ./start-all.ps1
 ```
 
----
+
 
 ## 🛠️ The Tech Stack
 
